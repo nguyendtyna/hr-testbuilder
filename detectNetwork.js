@@ -12,7 +12,8 @@
 
 var detectNetwork = function(cardNumber) {
 
-  // Store the first two characters from input string
+  // Store prefixes from input string
+  let oneNumPrefix = cardNumber.slice(0, 1);
   let twoNumPrefix = cardNumber.slice(0, 2);
 
   // The Diner's Club: starts with 38 or 39, length of 14
@@ -23,6 +24,24 @@ var detectNetwork = function(cardNumber) {
   // The American Express: starts with 34/37, length of 15
   if ((twoNumPrefix === '34' || twoNumPrefix === '37') && cardNumber.length === 15) {
     return 'American Express';
+  }
+
+  // Visa: starts with 4, length of 13, 16 or 19
+  let lengthVisa = [13, 16, 19];
+
+  for (let i = 0; i < lengthVisa.length; i++) {
+    if (oneNumPrefix === '4' && cardNumber.length === lengthVisa[i]) {
+      return 'Visa';
+    }
+  }
+
+  // MasterCard: starts with 51, 52, 53, 54 or 55, length of 16
+  let prefixMaster = ['51', '52', '53', '54', '55'];
+
+  for (let i = 0; i < prefixMaster.length; i++) {
+    if (twoNumPrefix === prefixMaster[i] && cardNumber.length === 16) {
+      return 'MasterCard';
+    }
   }
 
 };
