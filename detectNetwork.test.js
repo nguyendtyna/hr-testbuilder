@@ -177,5 +177,59 @@ describe('Discover', function() {
 });
 
 describe('Maestro', function() {
-  // Write full test coverage for the Maestro card
+  var expect = chai.expect;
+
+  // card prefix of 5018
+  var initialCard = '501856789012';
+
+  for (var length = 12; length <= 19; length++) {
+    (function(length, initialCard) {
+      it('has a prefix of 5018 and a length of ' + length, function() {
+        expect(detectNetwork(initialCard)).to.equal('Maestro');
+      });
+
+    }) (length, initialCard);
+    // add string digit to initialCard to increment length
+    initialCard += '1';
+  }
+
+  // card prefix of 5020
+  var initialCard = '502056789012';
+  for (var length = 12; length <= 19; length++) {
+    (function(length, initialCard) {
+      it('has a prefix of 5020 and a length of ' + length, function() {
+        expect(detectNetwork(initialCard)).to.equal('Maestro');
+      });
+
+    }) (length, initialCard);
+    // add string digit to initialCard to increment length
+    initialCard += '1';
+  }
+
+  // card prefix of 5038
+  var initialCard = '503856789012';
+  for (var length = 12; length <= 19; length++) {
+    (function(length, initialCard) {
+      it('has a prefix of 5038 and a length of ' + length, function() {
+        expect(detectNetwork(initialCard)).to.equal('Maestro');
+      });
+
+    }) (length, initialCard);
+    // add string digit to initialCard to increment length
+    initialCard += '1';
+  }
+
+  // card prefix of 6304
+  var initialCard = '630456789012';
+  for (var length = 12; length <= 19; length++) {
+    (function(length, initialCard) {
+      it('has a prefix of 6304 and a length of ' + length, function() {
+        expect(detectNetwork(initialCard)).to.equal('Maestro');
+      });
+
+    }) (length, initialCard);
+    // add string digit to initialCard to increment length
+    initialCard += '1';
+  }
+
 });
