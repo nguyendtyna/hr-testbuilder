@@ -17,6 +17,7 @@ var detectNetwork = function(cardNumber) {
   let twoNumPrefix = cardNumber.slice(0, 2);
   let threeNumPrefix = cardNumber.slice(0, 3);
   let fourNumPrefix = cardNumber.slice(0, 4);
+  let sixNumPrefix = cardNumber.slice(0, 6);
 
   // The Diner's Club: starts with 38 or 39, length of 14
   if ((twoNumPrefix === '38' || twoNumPrefix === '39') && cardNumber.length === 14) {
@@ -65,6 +66,16 @@ var detectNetwork = function(cardNumber) {
         return 'Maestro';
       }
     }
+  }
+
+  // China UnionPay: starts with 622126-622925, 624-626 or 6282-6288, and length of 16-19
+  let sixNum = sixNumPrefix >= '622126' && sixNumPrefix <= '622925';
+  let threeNum = threeNumPrefix >= '624' && threeNumPrefix <= '626';
+  let fourNum = fourNumPrefix >= '6282' && fourNumPrefix <= '6288';
+  let lengthUnionPay = cardNumber.length >= 16 && cardNumber.length <= 19;
+
+  if ((sixNum || threeNum || fourNum) && lengthUnionPay) {
+    return 'China UnionPay';
   }
 
 };
