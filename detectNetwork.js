@@ -29,6 +29,18 @@ var detectNetwork = function(cardNumber) {
     return 'American Express';
   }
 
+  // Switch: starts with 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759, and length of 16, 18, or 19
+  let prefixSwitch = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
+  let lengthSwitch = [16, 18, 19];
+
+  for (let i = 0; i < prefixSwitch.length; i++) {
+    for (let j = 0; j < lengthSwitch.length; j++) {
+      if ((fourNumPrefix === prefixSwitch[i] || sixNumPrefix === prefixSwitch[i]) && (cardNumber.length === lengthSwitch[j])) {
+        return 'Switch';
+      }
+    }
+  }
+
   // Visa: starts with 4, length of 13, 16 or 19
   let lengthVisa = [13, 16, 19];
 
