@@ -55,6 +55,18 @@ var detectNetwork = function(cardNumber) {
     }
   }
 
+  // Maestro: starts with 5018, 5020, 5038, 6304, and length of 12-19
+  let prefixMaestro = ['5018', '5020', '5038', '6304'];
+  let lengthMaestro = [12, 13, 14, 15, 16, 17, 18, 19];
+
+  for (let i = 0; i < prefixMaestro.length; i++) {
+    for (let j = 0; j < lengthMaestro.length; j++) {
+      if (fourNumPrefix === prefixMaestro[i] && cardNumber.length === lengthMaestro[j]) {
+        return 'Maestro';
+      }
+    }
+  }
+
 };
 
 
